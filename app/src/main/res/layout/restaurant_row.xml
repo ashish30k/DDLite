@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+android:paddingBottom="16dp"
+android:paddingTop="16dp">
+
+    <ImageView
+            android:id="@+id/restaurant_iv"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/ic_launcher_background"/>
+
+    <TextView
+            android:id="@+id/restaurant_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/restaurant_iv"
+            app:layout_constraintTop_toTopOf="@+id/restaurant_iv"
+            tools:text="Baja Fresh (Los Gatos/Palo Alto) (Catering) (DD4B)"/>
+
+    <TextView
+            android:id="@+id/restaurant_type_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/restaurant_iv"
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_name_tv"
+            tools:text="Tacos, Tex-Mex, Salads, Fast Food, Sandwich, Mexican, waffles, Catering, Lunch"
+    />
+    <TextView
+            android:id="@+id/restaurant_status_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_type_tv"
+            tools:text="Closed"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

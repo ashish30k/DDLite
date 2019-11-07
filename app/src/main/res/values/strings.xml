@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DoorDash</string>
+    <string name="restaurants_activity_title">Discover</string>
+    <string name="closed">Closed</string>
+    <string name="mins">Mins</string>
+    <string name="restaurant_distance">%1$s Mins</string>
+    <string name="no_restaurants_found">No Restaurants Found</string>
+</resources>
