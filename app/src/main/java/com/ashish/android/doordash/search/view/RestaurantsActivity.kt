@@ -9,7 +9,8 @@ import com.ashish.android.doordash.core.DoorDashApp
 import com.ashish.android.doordash.search.dagger.RestaurantsComponent
 import javax.inject.Inject
 
-const val SAVED_SCROLL_POSITION_PREF_KEY = "saved_scroll_position_pref_key";
+const val SAVED_SCROLL_POSITION_PREF_KEY = "saved_scroll_position_pref_key"
+
 class RestaurantsActivity : AppCompatActivity() {
 
     lateinit var restaurantsComponent: RestaurantsComponent

@@ -45,8 +45,6 @@ class RestaurantsRecyclerViewAdapter(private var restaurantList: MutableList<Res
         notifyDataSetChanged()
     }
 
-    fun getAdapterPosition() = adapterPosition
-
     class RestaurantItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val restaurantIv = itemView.findViewById<ImageView>(R.id.restaurant_iv)
         private val restaurantNameTv = itemView.findViewById<TextView>(R.id.restaurant_name_tv)

@@ -1,7 +1,6 @@
 package com.ashish.android.doordash.search.net
 
 import android.os.Parcelable
-import com.ashish.android.doordash.R
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 

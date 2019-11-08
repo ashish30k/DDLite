@@ -8,7 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
 open class BaseViewModel : ViewModel() {
     var compositeDisposable = CompositeDisposable()
     protected var errorMutableLiveData = MutableLiveData<String>()
-    val errorLiveData:LiveData<String> = errorMutableLiveData
+    val errorLiveData: LiveData<String> = errorMutableLiveData
 
     override fun onCleared() {
         super.onCleared()

@@ -17,7 +17,7 @@ class RestaurantsViewModel @Inject constructor(val restaurantRepo: RestaurantRep
     private var noRestaurantMutableLiveData = MutableLiveData<Boolean>()
     val noRestaurantLiveData: LiveData<Boolean> = noRestaurantMutableLiveData
 
-    private var restaurantsList:List<Restaurant>? = null
+    private var restaurantsList: List<Restaurant>? = null
 
     fun fetchRestaurants(lat: String, lng: String, offset: Int) {
         restaurantRepo.getRestaurants(lat, lng, offset)
