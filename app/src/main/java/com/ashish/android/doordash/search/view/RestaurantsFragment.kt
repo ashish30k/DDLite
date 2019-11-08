@@ -12,20 +12,28 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ashish.android.doordash.R
 import com.ashish.android.doordash.R.layout
+import com.ashish.android.doordash.core.DoorDashApp
 import com.ashish.android.doordash.core.displayToast
 
 class RestaurantsFragment : Fragment() {
-
-    private lateinit var restaurantsReyclerview: RecyclerView
+    lateinit var restaurantsReyclerview: RecyclerView
 
     private lateinit var restaurantsRecyclerViewAdapter: RestaurantsRecyclerViewAdapter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val viewModel = (activity as RestaurantsActivity).restaurantsViewModel
+
         viewModel.fetchRestaurants("37.422740", "-122.139956", 0)
+
         viewModel.restaurantsLiveData.observe(this, Observer {
             restaurantsRecyclerViewAdapter.addRestaurants(it)
+
+            val adapterPosition: Int? =
+                (context?.applicationContext as DoorDashApp).appComponent.getSharedPrefsHelper()
+                    .getInt(SAVED_SCROLL_POSITION_PREF_KEY)
+            restaurantsReyclerview.scrollToPosition(adapterPosition!!)
+
         })
 
         viewModel.noRestaurantLiveData.observe(viewLifecycleOwner, Observer {
@@ -45,11 +53,20 @@ class RestaurantsFragment : Fragment() {
 
         restaurantsRecyclerViewAdapter = RestaurantsRecyclerViewAdapter((mutableListOf()))
         restaurantsReyclerview.adapter = restaurantsRecyclerViewAdapter
+
         return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.title = getString(R.string.restaurants_activity_title)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        (context?.applicationContext as DoorDashApp).appComponent.getSharedPrefsHelper().putInt(
+            SAVED_SCROLL_POSITION_PREF_KEY,
+            (restaurantsReyclerview.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+        )
     }
 }
