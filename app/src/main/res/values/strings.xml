@@ -5,4 +5,5 @@
     <string name="mins">Mins</string>
     <string name="restaurant_distance">%1$s Mins</string>
     <string name="no_restaurants_found">No Restaurants Found</string>
+    <string name="generic_error_message">Something went wrong, please try again</string>
 </resources>

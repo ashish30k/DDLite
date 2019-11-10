@@ -12,7 +12,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name="com.ashish.android.doordash.search.view.RestaurantsActivity">
+        <activity android:name="com.ashish.android.doordash.search.ui.RestaurantsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

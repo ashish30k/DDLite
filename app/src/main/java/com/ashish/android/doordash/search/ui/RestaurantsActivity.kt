@@ -1,4 +1,4 @@
-package com.ashish.android.doordash.search.view
+package com.ashish.android.doordash.search.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
