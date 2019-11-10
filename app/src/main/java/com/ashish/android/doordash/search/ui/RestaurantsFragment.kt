@@ -105,8 +105,8 @@ class RestaurantsFragment : Fragment() {
         binding.restaurantsRv.adapter = restauranstListAdapter
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
+    override fun onStop() {
+        super.onStop()
         saveScrollPosition()
     }
 

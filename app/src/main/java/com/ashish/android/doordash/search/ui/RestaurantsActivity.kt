@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.ashish.android.doordash.R
 import com.ashish.android.doordash.R.layout
 import com.ashish.android.doordash.core.DoorDashApp
+import com.ashish.android.doordash.core.extenstions.replaceFragmentToBackStack
 import com.ashish.android.doordash.search.dagger.RestaurantsComponent
 import javax.inject.Inject
 
@@ -32,10 +33,6 @@ class RestaurantsActivity : AppCompatActivity() {
         restaurantsViewModel =
             ViewModelProviders.of(this, restaurantsViewModelFactory).get(RestaurantsViewModel::class.java)
 
-        supportFragmentManager.beginTransaction().replace(
-            R.id.restaurants_fragment_container,
-            RestaurantsFragment(),
-            RestaurantsFragment::class.java.simpleName
-        ).commit()
+        replaceFragmentToBackStack(R.id.restaurants_fragment_container, RestaurantsFragment())
     }
 }
