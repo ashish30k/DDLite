@@ -1,4 +1,4 @@
-package com.ashish.android.doordash.core
+package com.ashish.android.doordash.core.di
 
 import android.app.Application
 import android.content.Context

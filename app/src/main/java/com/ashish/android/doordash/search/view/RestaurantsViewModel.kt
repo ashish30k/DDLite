@@ -3,7 +3,8 @@ package com.ashish.android.doordash.search.view
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.ashish.android.doordash.core.BaseViewModel
+import com.ashish.android.doordash.core.viewmodel.BaseViewModel
+import com.ashish.android.doordash.core.SingleLiveEvent
 import com.ashish.android.doordash.search.domain.RestaurantRepo
 import com.ashish.android.doordash.search.net.Restaurant
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,8 +15,8 @@ class RestaurantsViewModel @Inject constructor(val restaurantRepo: RestaurantRep
     private var restaurantsMutableLiveData = MutableLiveData<List<Restaurant>>()
     val restaurantsLiveData: LiveData<List<Restaurant>> = restaurantsMutableLiveData
 
-    private var noRestaurantMutableLiveData = MutableLiveData<Boolean>()
-    val noRestaurantLiveData: LiveData<Boolean> = noRestaurantMutableLiveData
+    private var noRestaurantMutableLiveData = SingleLiveEvent<Boolean>()
+    val noRestaurantLiveData: SingleLiveEvent<Boolean> = noRestaurantMutableLiveData
 
     private var restaurantsList: List<Restaurant>? = null
 

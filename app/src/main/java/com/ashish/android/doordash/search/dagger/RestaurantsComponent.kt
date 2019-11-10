@@ -1,6 +1,6 @@
 package com.ashish.android.doordash.search.dagger
 
-import com.ashish.android.doordash.core.ActivityScope
+import com.ashish.android.doordash.core.di.ActivityScope
 import com.ashish.android.doordash.search.view.RestaurantsActivity
 import com.ashish.android.doordash.search.view.RestaurantsFragment
 import dagger.Subcomponent

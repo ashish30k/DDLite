@@ -1,7 +1,9 @@
-package com.ashish.android.doordash.core
+package com.ashish.android.doordash.core.di
 
 import android.app.Application
 import android.content.Context
+import com.ashish.android.doordash.core.DoorDashApp
+import com.ashish.android.doordash.core.SharedPrefsHelper
 import com.ashish.android.doordash.search.dagger.RestaurantsComponent
 import dagger.Component
 import javax.inject.Singleton

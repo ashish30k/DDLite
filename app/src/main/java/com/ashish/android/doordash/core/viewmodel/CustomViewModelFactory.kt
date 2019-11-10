@@ -1,4 +1,4 @@
-package com.ashish.android.doordash.core
+package com.ashish.android.doordash.core.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

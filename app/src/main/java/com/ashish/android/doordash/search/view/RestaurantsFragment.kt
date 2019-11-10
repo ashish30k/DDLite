@@ -22,11 +22,10 @@ class RestaurantsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val viewModel = (activity as RestaurantsActivity).restaurantsViewModel
+    }
 
-        viewModel.fetchRestaurants("37.422740", "-122.139956", 0)
-
-        viewModel.restaurantsLiveData.observe(this, Observer {
+    private fun observeLiveData(viewModel: RestaurantsViewModel) {
+        viewModel.restaurantsLiveData.observe(viewLifecycleOwner, Observer {
             restaurantsRecyclerViewAdapter.addRestaurants(it)
 
             val adapterPosition: Int? =
@@ -38,6 +37,12 @@ class RestaurantsFragment : Fragment() {
 
         viewModel.noRestaurantLiveData.observe(viewLifecycleOwner, Observer {
             context?.displayToast(getString(R.string.no_restaurants_found), Toast.LENGTH_LONG)
+        })
+
+        // TODO for this exercise purpose simply displaying generic error message
+        viewModel.errorLiveData.observe(viewLifecycleOwner, Observer {
+            context?.displayToast(getString(R.string.generic_error_message), Toast.LENGTH_LONG)
+
         })
     }
 
@@ -54,6 +59,11 @@ class RestaurantsFragment : Fragment() {
         restaurantsRecyclerViewAdapter = RestaurantsRecyclerViewAdapter((mutableListOf()))
         restaurantsReyclerview.adapter = restaurantsRecyclerViewAdapter
 
+        val viewModel = (activity as RestaurantsActivity).restaurantsViewModel
+
+        viewModel.fetchRestaurants("37.422740", "-122.139956", 0)
+
+        observeLiveData(viewModel)
         return rootView
     }
 

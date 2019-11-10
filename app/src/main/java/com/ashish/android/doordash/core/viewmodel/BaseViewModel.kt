@@ -1,19 +1,16 @@
-package com.ashish.android.doordash.core
+package com.ashish.android.doordash.core.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.ashish.android.doordash.core.SingleLiveEvent
 import io.reactivex.disposables.CompositeDisposable
 
 open class BaseViewModel : ViewModel() {
     var compositeDisposable = CompositeDisposable()
-    protected var errorMutableLiveData = MutableLiveData<String>()
-    val errorLiveData: LiveData<String> = errorMutableLiveData
+    protected var errorMutableLiveData = SingleLiveEvent<String>()
+    val errorLiveData: SingleLiveEvent<String> = errorMutableLiveData
 
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.clear()
     }
-
-
 }
