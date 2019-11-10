@@ -1,46 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+    </data>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/screen_border"
+            android:layout_marginBottom="@dimen/screen_border">
+
+        <ImageView
                 android:layout_marginTop="@dimen/screen_border"
-                android:layout_marginBottom="@dimen/screen_border">
+                android:layout_marginBottom="@dimen/screen_border"
+                android:id="@+id/restaurant_iv"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/screen_border"
+                android:contentDescription="@null"
+                android:gravity="center"
+                tools:src="@mipmap/ic_launcher"/>
 
-    <ImageView
-            android:id="@+id/restaurant_iv"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="@dimen/screen_border"
-            android:layout_centerInParent="true"
-            android:contentDescription="@null"
-            android:gravity="center"
-            tools:src="@mipmap/ic_launcher"/>
+        <TextView
+                android:layout_marginTop="@dimen/screen_border"
+                android:id="@+id/restaurant_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_border"
+                android:layout_toEndOf="@+id/restaurant_iv"
+                tools:text="Baja Fresh (Los Gatos/Palo Alto) (Catering) (DD4B)"/>
 
-    <TextView
-            android:id="@+id/restaurant_name_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/screen_border"
-            android:layout_toEndOf="@+id/restaurant_iv"
-            tools:text="Baja Fresh (Los Gatos/Palo Alto) (Catering) (DD4B)"/>
+        <TextView
+                android:id="@+id/restaurant_type_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/restaurant_name_tv"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@+id/restaurant_iv"
+                tools:text="Tacos, Tex-Mex, Salads, Fast Food, Sandwich, Mexican, waffles, Catering, Lunch"
+                />
 
-    <TextView
-            android:id="@+id/restaurant_type_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/restaurant_name_tv"
-            android:layout_marginStart="16dp"
-            android:layout_toEndOf="@+id/restaurant_iv"
-            tools:text="Tacos, Tex-Mex, Salads, Fast Food, Sandwich, Mexican, waffles, Catering, Lunch"/>
+        <TextView
+                android:id="@+id/restaurant_status_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/restaurant_type_tv"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/screen_border"
+                tools:text="Closed"
+                android:layout_marginBottom="@dimen/screen_border"/>
 
-    <TextView
-            android:id="@+id/restaurant_status_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/restaurant_type_tv"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/screen_border"
-            tools:text="Closed"/>
-
-</RelativeLayout>
+    </RelativeLayout>
+</layout>
