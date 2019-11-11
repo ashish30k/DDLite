@@ -15,6 +15,7 @@ class RestaurantViewHolder(val binding: RestaurantRowBinding) : RecyclerView.Vie
             binding.restaurantNameTv.text = restaurant.name
             binding.restaurantTypeTv.text = restaurant.description
             binding.restaurantStatusTv.text = getRestaurantStatus(restaurant)
+            binding.root.setOnClickListener { listener(restaurant) }
         }
     }
 
