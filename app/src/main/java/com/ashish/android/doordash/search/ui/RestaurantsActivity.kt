@@ -28,11 +28,9 @@ class RestaurantsActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             (this.applicationContext as DoorDashApp).appComponent.getSharedPrefsHelper()
                 .putInt(SAVED_SCROLL_POSITION_PREF_KEY, 0)
+            replaceFragmentToBackStack(R.id.restaurants_fragment_container, RestaurantsFragment())
         }
-
         restaurantsViewModel =
             ViewModelProviders.of(this, restaurantsViewModelFactory).get(RestaurantsViewModel::class.java)
-
-        replaceFragmentToBackStack(R.id.restaurants_fragment_container, RestaurantsFragment())
     }
 }
