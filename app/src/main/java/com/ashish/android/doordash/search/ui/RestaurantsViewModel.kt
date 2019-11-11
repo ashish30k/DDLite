@@ -19,8 +19,6 @@ class RestaurantsViewModel @Inject constructor(private val restaurantsDataSource
     var restaurantsList: LiveData<PagedList<Restaurant>>
 
     init {
-        // TODO for the purpose of this exercise hardcoding lat and long. In real life either it will be user's live location or entered location
-        restaurantsDataSourceFactory.setLatLng("37.422740", "-122.139956")
         val config = PagedList.Config.Builder()
             .setPageSize(pageSize)
             .setInitialLoadSizeHint(pageSize * 2)

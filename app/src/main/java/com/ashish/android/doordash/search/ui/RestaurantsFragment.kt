@@ -8,14 +8,19 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ashish.android.doordash.R
 import com.ashish.android.doordash.core.DoorDashApp
 import com.ashish.android.doordash.databinding.FragmentRestaurantsBinding
+import com.ashish.android.doordash.search.dagger.RestaurantsComponent
+import com.ashish.android.doordash.search.domain.RestaurantsDataSourceFactory
 import com.ashish.android.doordash.search.domain.State
 import com.ashish.android.doordash.search.net.Restaurant
+import com.ashish.android.doordash.search.net.RestaurantService
+import javax.inject.Inject
 
 class RestaurantsFragment : Fragment() {
 
@@ -33,14 +38,35 @@ class RestaurantsFragment : Fragment() {
 
     private lateinit var binding: FragmentRestaurantsBinding
 
+    private lateinit var restaurantsComponent: RestaurantsComponent
+
+    @Inject
+    lateinit var restaurantService: RestaurantService
+
+    private lateinit var restaurantsDataSourceFactory: RestaurantsDataSourceFactory
+
+    private lateinit var restaurantsViewModel: RestaurantsViewModel
+
     override fun onAttach(context: Context) {
+        restaurantsComponent = (context.applicationContext as DoorDashApp).appComponent.restaurantsComponent().create()
+        restaurantsComponent.inject(this)
+
         super.onAttach(context)
+
+        // TODO for the purpose of this exercise hardcoding lat and long. In real life either it will be user's live location or entered location
+        restaurantsDataSourceFactory = RestaurantsDataSourceFactory(restaurantService, "37.422740", "-122.139956")
+
+        restaurantsViewModel =
+            ViewModelProviders.of(this, RestaurantsViewModelFactory(restaurantsDataSourceFactory))
+                .get(RestaurantsViewModel::class.java)
+
         if (context is OnRestaurantSelectListener) {
             callback = context
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_restaurants,
@@ -59,7 +85,7 @@ class RestaurantsFragment : Fragment() {
     }
 
     private fun observeLiveData() {
-        getRestaurantsViewModel().restaurantsList.observe(viewLifecycleOwner, Observer {
+        restaurantsViewModel.restaurantsList.observe(viewLifecycleOwner, Observer {
             restauranstListAdapter.submitList(it)
 
             val adapterPosition: Int? =
@@ -69,20 +95,20 @@ class RestaurantsFragment : Fragment() {
             binding.restaurantsRv.scrollToPosition(adapterPosition!!)
         })
 
-        getRestaurantsViewModel().getState().observe(viewLifecycleOwner, Observer { state ->
-            if (getRestaurantsViewModel().isEmptyList() && state == State.LOADING) {
+        restaurantsViewModel.getState().observe(viewLifecycleOwner, Observer { state ->
+            if (restaurantsViewModel.isEmptyList() && state == State.LOADING) {
                 binding.loadingProgressBar.visibility = View.VISIBLE
             } else {
                 binding.loadingProgressBar.visibility = View.GONE
             }
 
-            if (getRestaurantsViewModel().isEmptyList() && state == State.ERROR) {
+            if (restaurantsViewModel.isEmptyList() && state == State.ERROR) {
                 binding.errorTv.visibility = View.VISIBLE
             } else {
                 binding.errorTv.visibility = View.GONE
             }
 
-            if (!getRestaurantsViewModel().isEmptyList()) {
+            if (!restaurantsViewModel.isEmptyList()) {
                 restauranstListAdapter.setState(state ?: State.DONE)
             }
         })
@@ -117,7 +143,4 @@ class RestaurantsFragment : Fragment() {
         )
     }
 
-    private fun getRestaurantsViewModel(): RestaurantsViewModel {
-        return (this.activity as RestaurantsActivity).restaurantsViewModel
-    }
 }
